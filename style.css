@@ -1,8 +1,18 @@
+/* Basic reset */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins";
+}
+
+body, html {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+i {
+    width: 30px;
 }
 
 .container {
@@ -27,11 +37,11 @@
 
 .content {
     position: relative;
-    z-index: 1;
     text-align: center;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 1s ease-in-out forwards;
+    transition: transform 0.7s ease; /* Ensure smooth transition when menu is opened */
 }
 
 .social-links {
@@ -108,7 +118,103 @@
 }
 
 @keyframes spin {
-    0% {transform: rotate(0deg); }
-    100% {transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
+.menu-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+    display: none;
+    /* Add a transition for smoother icon change */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-button .fas.fa-bars {
+    display: block;
+}
+
+/* Styles for the X icon (when menu is open) */
+.menu-button .fas.fa-times {
+    display: none;
+}
+
+/* Show the X icon when menu is open */
+.menu-button.open .fas.fa-bars {
+    display: none;
+}
+
+.menu-button.open .fas.fa-times {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .menu-button {
+        display: block;
+    }
+}
+
+
+
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Initially hidden */
+    width: 300px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    transition: left 0.7s ease;
+}
+
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.7s ease; /* Smooth transition when menu opens */
+}
+
+.side-menu.open {
+    left: 0; /* Slide in menu */
+}
+
+.container.menu-open .content-wrapper {
+    transform: translateX(300px); /* Move content to the right */
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+.container.menu-open .content {
+    transform: translateX(300px); /* Push the content to the right */
+}
+
+.logo {
+    width: 100%; /* Adjust width as needed */
+    max-width: 50px; /* Adjust max-width as needed */
+    margin-bottom: 20px; /* Adjust margin as needed */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    /* Other styling if needed */
+}
