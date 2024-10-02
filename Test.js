@@ -13,3 +13,8 @@ function bonusTime(salary, bonus) {
 }
 
 const bonusTime = (salary, bonus) => `£${salary * (bonus ? 10 : 1)}`;
+
+
+function bonusTime(salary, bonus) {
+  return '£' + salary * (bonus ? 10 : 1);
+}
