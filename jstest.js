@@ -16,3 +16,28 @@ function moveTen(s){
 
 
 moveTen("alz")
+
+
+function sockMerchant(n, ar) {
+    let obj = {}
+    
+    for(let i = 0; i < ar.length; i++){
+      if(obj[ar[i]]) {
+        obj[ar[i]]++
+      }
+      else {
+        obj[ar[i]] = 1
+      }
+    }
+  
+  let count = 0
+  
+  for(let num in obj) {
+    if(obj[num] >= 2) {
+      count += parseInt(obj[num]/2)
+    }
+  }
+  return count
+
+}
+sockMerchant(7, [1,2,1,2,1,3,2,3,4,4])
